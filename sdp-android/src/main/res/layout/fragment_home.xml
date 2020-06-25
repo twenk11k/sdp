@@ -1,0 +1,640 @@
+<androidx.constraintlayout.widget.ConstraintLayout android:background="@color/black_1"
+    android:fitsSystemWindows="true"
+    android:id="@+id/parent_layout"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <com.zemana.msecurity.common.StatusBarView
+        android:background="@android:color/transparent"
+        android:id="@+id/statusBarView"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:elevation="2dp"
+        android:id="@+id/toolbar"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:theme="@style/ThemeOverlay.MaterialComponents.ActionBar"
+        app:layout_constraintTop_toBottomOf="@id/statusBarView" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@color/home_upper_background_color"
+        android:id="@+id/upper_layout"
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        app:layout_constraintHeight_percent="0.5"
+        app:layout_constraintTop_toTopOf="@+id/toolbar">
+
+        <LinearLayout
+            android:id="@+id/linear_scan"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <FrameLayout
+                android:layout_gravity="center_horizontal"
+                android:layout_height="@dimen/_110sdp"
+                android:layout_width="@dimen/_110sdp">
+
+                <com.zemana.msecurity.common.animscanbutton.ScanButtonRing
+                    android:id="@+id/image_scan_outer_ring"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:padding="@dimen/_5sdp"
+                    android:src="@drawable/button_scan_outer_ring" />
+
+                <FrameLayout
+                    android:layout_gravity="center"
+                    android:layout_height="@dimen/_65sdp"
+                    android:layout_width="@dimen/_65sdp">
+
+                    <ImageView
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:id="@+id/image_scan"
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent"
+                        android:src="@drawable/button_scan_circle" />
+
+                    <TextView
+                        android:fontFamily="@font/oswald_regular"
+                        android:id="@+id/text_scan"
+                        android:layout_gravity="center"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:letterSpacing="0.05"
+                        android:text="@string/scan_upper"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_14ssp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
+
+                    <ProgressBar
+                        android:id="@+id/progress_scan"
+                        android:layout_gravity="center"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content" />
+
+                </FrameLayout>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/layout_scan_text"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_width="wrap_content">
+
+                <TextView
+                    android:ellipsize="end"
+                    android:fontFamily="@font/oswald_regular"
+                    android:id="@+id/text_scan_left"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="wrap_content"
+                    android:maxLines="1"
+                    android:text="@string/text_scan_left"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14ssp"
+                    android:visibility="invisible" />
+
+                <ProgressBar
+                    android:id="@+id/progress_scan_left"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content" />
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <RelativeLayout
+        android:elevation="2dp"
+        android:id="@+id/relative_boxes"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginEnd="@dimen/divider_margin_left_right"
+        android:layout_marginLeft="@dimen/divider_margin_left_right"
+        android:layout_marginRight="@dimen/divider_margin_left_right"
+        android:layout_marginStart="@dimen/divider_margin_left_right"
+        android:layout_marginTop="@dimen/_170sdp"
+        android:layout_width="match_parent"
+        app:layout_constraintBottom_toBottomOf="@+id/upper_layout"
+        app:layout_constraintTop_toTopOf="@+id/below_layout">
+
+        <FrameLayout
+            android:background="@color/divider_color"
+            android:id="@+id/divider"
+            android:layout_height="1dp"
+            android:layout_width="match_parent" />
+
+        <RelativeLayout
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:id="@+id/layout_scan_info"
+            android:layout_below="@id/divider"
+            android:layout_height="@dimen/_60sdp"
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent">
+
+            <LinearLayout
+                android:id="@+id/layout_scan_info_up"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginStart="25dp"
+                android:layout_width="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:fontFamily="@font/poppins_light"
+                    android:id="@+id/text_scan_info_up_left"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="Last scanned: "
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12ssp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:fontFamily="@font/poppins_light"
+                    android:id="@+id/text_scan_info_up_right"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="15 minutes ago"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12ssp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_scan_info_down"
+                android:layout_below="@+id/layout_scan_info_up"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:fontFamily="@font/poppins_light"
+                    android:id="@+id/text_scan_info_down_left"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="No issues were found"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11ssp" />
+
+                <TextView
+                    android:fontFamily="@font/poppins_light"
+                    android:id="@+id/text_scan_info_down_right"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="Clean"
+                    android:textColor="@color/scan_result_background_end_color"
+                    android:textSize="@dimen/_11ssp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_width="wrap_content"
+                android:orientation="horizontal">
+
+                <com.zemana.msecurity.common.spinnerscan.SpinnerScan
+                    android:id="@+id/spinner_scan"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <FrameLayout
+            android:id="@+id/frame_middle_box"
+            android:layout_below="@+id/layout_scan_info"
+            android:layout_height="@dimen/_110sdp"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:layout_width="match_parent">
+
+            <LinearLayout
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:id="@+id/linear_scan_result_info"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:id="@+id/layout_threats_found"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_width="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:fontFamily="@font/poppins_light"
+                        android:id="@+id/text_threats_found_left"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="Threats found: "
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:fontFamily="@font/poppins_light"
+                        android:id="@+id/text_threats_found_right"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="0"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_files_scanned"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:fontFamily="@font/poppins_light"
+                        android:id="@+id/text_files_scanned_left"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="Files scanned: "
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:fontFamily="@font/poppins_light"
+                        android:id="@+id/text_files_scanned_right"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="5"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_start_time"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:fontFamily="@font/poppins_light"
+                        android:id="@+id/text_start_time_left"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="Start time: "
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:fontFamily="@font/poppins_light"
+                        android:id="@+id/text_start_time_right"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="29.04.2020 09:01"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_scan_duration"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:fontFamily="@font/poppins_light"
+                        android:id="@+id/text_scan_duration_left"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="Scan duration: "
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:fontFamily="@font/poppins_light"
+                        android:id="@+id/text_scan_duration_right"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="00:15"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <androidx.gridlayout.widget.GridLayout
+                android:id="@+id/grid_features"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                app:columnCount="2"
+                app:rowCount="2">
+
+                <RelativeLayout
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:id="@+id/grid_feature_1"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/_1sdp"
+                    android:layout_width="0dp"
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1">
+
+                    <TextView
+                        android:fontFamily="@font/firasans_regular"
+                        android:id="@+id/text_web_protection"
+                        android:layout_centerHorizontal="true"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:layout_width="wrap_content"
+                        android:text="@string/web_protection"
+                        android:textColor="@color/gray_dark"
+                        android:textSize="@dimen/_11ssp" />
+
+                    <com.zemana.msecurity.common.switchbutton.SwitchButton
+                        android:id="@+id/switch_web_protection"
+                        android:layout_below="@+id/text_web_protection"
+                        android:layout_centerHorizontal="true"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:layout_width="wrap_content" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:id="@+id/grid_feature_2"
+                    android:layout_height="0dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="@dimen/_1sdp"
+                    android:layout_width="0dp"
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1">
+
+                    <TextView
+                        android:fontFamily="@font/firasans_regular"
+                        android:id="@+id/text_realtime_protection"
+                        android:layout_centerHorizontal="true"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:layout_width="wrap_content"
+                        android:text="@string/premium_realtime_protection"
+                        android:textColor="@color/gray_dark"
+                        android:textSize="@dimen/_11ssp" />
+
+                    <FrameLayout
+                        android:layout_below="@+id/text_realtime_protection"
+                        android:layout_centerHorizontal="true"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:layout_width="wrap_content">
+
+                        <com.zemana.msecurity.common.switchbutton.SwitchButton
+                            android:id="@+id/switch_realtime_protection"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:visibility="gone" />
+
+                        <Button
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            android:fontFamily="@font/oswald_regular"
+                            android:id="@+id/button_grid_realtime_protection_upgrade"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/_1sdp"
+                            android:layout_width="wrap_content"
+                            android:text="UPGRADE"
+                            android:textColor="@color/bottom_nav_view_color"
+                            android:textSize="@dimen/_12sdp" />
+
+                    </FrameLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:id="@+id/grid_feature_3"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/_1sdp"
+                    android:layout_width="0dp"
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1">
+
+                    <TextView
+                        android:fontFamily="@font/firasans_regular"
+                        android:id="@+id/text_anti_keylogger"
+                        android:layout_centerHorizontal="true"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:layout_width="wrap_content"
+                        android:text="@string/title_anti_keylogger"
+                        android:textColor="@color/gray_dark"
+                        android:textSize="@dimen/_11ssp" />
+
+                    <FrameLayout
+                        android:layout_below="@+id/text_anti_keylogger"
+                        android:layout_centerHorizontal="true"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:layout_width="wrap_content">
+
+                        <com.zemana.msecurity.common.switchbutton.SwitchButton
+                            android:id="@+id/switch_anti_keylogger"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:visibility="gone" />
+
+                        <Button
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            android:fontFamily="@font/oswald_regular"
+                            android:id="@+id/button_grid_anti_keylogger_upgrade"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="@string/upgrade"
+                            android:textColor="@color/bottom_nav_view_color"
+                            android:textSize="@dimen/_12sdp" />
+
+                    </FrameLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:id="@+id/grid_feature_4"
+                    android:layout_height="0dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="@dimen/_1sdp"
+                    android:layout_width="0dp"
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1">
+
+                    <TextView
+                        android:fontFamily="@font/firasans_regular"
+                        android:id="@+id/text_anti_theft"
+                        android:layout_centerHorizontal="true"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:layout_width="wrap_content"
+                        android:text="@string/anti_theft"
+                        android:textColor="@color/gray_dark"
+                        android:textSize="@dimen/_11ssp" />
+
+                    <TextView
+                        android:fontFamily="@font/oswald_regular"
+                        android:id="@+id/text_anti_theft_coming_soon"
+                        android:layout_below="@+id/text_anti_theft"
+                        android:layout_centerHorizontal="true"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_width="wrap_content"
+                        android:text="Coming Soon!"
+                        android:textColor="@color/gray_dark_2"
+                        android:textSize="@dimen/_13ssp" />
+
+                </RelativeLayout>
+
+            </androidx.gridlayout.widget.GridLayout>
+
+        </FrameLayout>
+
+
+        <RelativeLayout
+            android:background="@color/white"
+            android:id="@+id/relative_feature"
+            android:layout_below="@+id/frame_middle_box"
+            android:layout_height="@dimen/_70sdp"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:layout_width="match_parent">
+
+            <LinearLayout
+                android:id="@+id/linear_info"
+                android:layout_below="@+id/text_recommended"
+                android:layout_centerVertical="true"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/image_feature_icon"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_width="@dimen/_35sdp"
+                    android:src="@drawable/image_placeholder" />
+
+                <LinearLayout
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_8sdp"
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/text_feature_title_1"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="Advanced Cleaning"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_11ssp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/text_feature_desc_1"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="Lorem ipsum dolor sit amet, in odio inimicus nam."
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_9sdp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/text_recommended"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:layout_marginRight="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:layout_width="wrap_content"
+                android:text="Recommended functions"
+                android:textColor="@color/gray_dark"
+                android:textSize="@dimen/_10sdp" />
+
+            <Button
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:fontFamily="@font/oswald_regular"
+                android:id="@+id/button_upgrade"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/button_upgrade_margin_bottom"
+                android:layout_marginRight="@dimen/_8sdp"
+                android:layout_width="wrap_content"
+                android:text="@string/upgrade"
+                android:textColor="@color/bottom_nav_view_color"
+                android:textSize="@dimen/_12sdp" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@color/below_layout_bg_light"
+        android:id="@+id/below_layout"
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        app:layout_constraintHeight_percent="0.5"
+        app:layout_constraintTop_toBottomOf="@+id/upper_layout">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
